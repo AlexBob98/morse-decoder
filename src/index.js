@@ -1,4 +1,4 @@
-const MORSE_TABLE = {
+const MORSE = {
     '.-':     'a',
     '-...':   'b',
     '-.-.':   'c',
@@ -37,10 +37,18 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-function decode(expr) {
-    // write your solution here
-}
 
+function decode(expr) {
+    let array = [];
+
+    for (let i = 0; i < expr.length; i += 10) {
+        array.push(expr.substring(i, i + 10));
+    }
+    return array.map(element => element === '**********' ? ' ' : 
+    MORSE[element.replace(/10/gi, '.').replace(/11/gi, '-').replace(/00/gi, '')])
+    .join('');
+}
 module.exports = {
     decode
-}
+};
+
